@@ -1,4 +1,4 @@
-.body{
+body{
     margin: 0;
     height: 100%;
 }
@@ -9,9 +9,9 @@
 .header-content{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     border: 0px solid green;
-    width: 80%;
 }
 .logo-content{
     display: flex;
@@ -33,7 +33,7 @@
 .emp-payroll{
     color: #42515f;
 }
-*{box-sizing: border-box;}
+* {box-sizing: border-box;}
 
 .form-content{
     min-height: calc(100%-80%px);
@@ -68,6 +68,9 @@
     border: 0px solid green;
 }
 .label{
+    min-width: 140px;
+}
+label{
     padding: 12px 12px 12px 0;
     display: inline-block;
 }
@@ -83,4 +86,18 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+}
+.profile-radio-content{
+    display: flex;
+    flex-direction: row;
+}
+.profile-radio-content > label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.profile{
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 12px;
 }
