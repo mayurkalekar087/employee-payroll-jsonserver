@@ -24,15 +24,28 @@ salary.addEventListener('input', function() {
 });
 });
 
-//UC-3
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
 }
+//UC-4
+function createAndUpdateStorage(employeePayrollData){
+    let employeePayrollList = JSON.parse(localStorage.getItem("employeePayrollList"));
+    if (employeePayrollList != undefined){
+        employeePayrollList.push(employeePayrollData);
 
+    } else{
+        employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList))
+}
+
+//UC-3
 const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try{
@@ -60,7 +73,6 @@ const getSelectedValues = (propertyValue) => {
     });
     return selItems;
 }
-
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
@@ -71,24 +83,29 @@ const getInputElementValue = (id) => {
     return value;
 }
 
-//UC-4
-const save = () => {
-    try {
-        let employeePayrollData = createEmployeePayroll();
-        createAndUpdateStorage(employeePayrollData);
-
-    } catch(e){
-        return;
-    }
+//UC-5
+const resetForm = ()=> {
+    setValue('#name','');
+    unSetSelectedValues('[name=profile]');
+    unSetSelectedValues('[name=gender]');
+    unSetSelectedValues('[name=department]');
+    setValue('#salary','');
+    setValue('#notes','');
+    setValue('#day','1');
+    setValue('#month','january');
+    setValue('#year','2020');
 }
-function createAndUpdateStorage(employeePayrollData){
-    let employeePayrollList = JSON.parse(localStorage.getItem("employeePayrollList"));
-    if (employeePayrollList != undefined){
-        employeePayrollList.push(employeePayrollData);
-
-    } else{
-        employeePayrollList = [employeePayrollData]
-    }
-    alert(employeePayrollList.toString());
-    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList))
+const unSetSelectedValues = (propertyValue)=>{
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item=>{
+        item.checked = false;
+    });
+}
+const setTextValue = (id,value)=>{
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+const setValue = (id,value )=>{
+const element = document.querySelector(id);
+element.value = value;
 }
