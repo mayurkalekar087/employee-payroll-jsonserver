@@ -1,8 +1,15 @@
 let empPayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
-   
+    empPayrollList =getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHtml();
+    localStorage.removeItem('editEmp');
 });
+
+const getEmployeePayrollDataFromStorage = () =>{
+    return localStorage.getItem('EmployeePayrollList') ?
+                            JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
 
 const createInnerHtml = () => {
     
@@ -52,7 +59,7 @@ const createEmployeePayrollJSON = () => {
           _profilePic: '../assets/Ellipse -1.png'
         },
         {
-            _name:'Bill Gates',
+            _name:'Mayur Kalekar',
           _gender: 'male',
           _department: [
               'Sales'
